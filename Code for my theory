@@ -1,0 +1,30 @@
+import numpy as np
+
+# Set a random seed to represent the "chaos" of prime numbers
+np.random.seed(42)
+
+# 1. Expand the boundaries from -0.1 to 1.1 (Your Step 5)
+left_boundary = -0.1
+right_boundary = 1.1
+center_line = 0.5  # The Perfect Number Speed Limit (Your Step 6 & 9)
+
+# Generate 5,000 chaotic "prime-like" data points across this expanded field
+raw_chaos = np.random.uniform(left_boundary, right_boundary, 5000)
+
+# 2. Define your Relativistic Speed Limit Warp (Your Step 9)
+# As energy/height increases, the space warps, dragging points toward the 0.5 speed limit horizon.
+# We will simulate a simple gravitational/relativistic pull toward the center.
+warp_factor = 0.85 
+warped_points = center_line + (raw_chaos - center_line) * (1 - warp_factor)
+
+# 3. Analyze the Split Zero forces (Your Step 7)
+# Let's count how many points approached from the positive side (0_x1) vs the negative side (0_x2)
+approached_from_positive = np.sum(warped_points > center_line)
+approached_from_negative = np.sum(warped_points < center_line)
+perfectly_centered = np.sum(np.isclose(warped_points, center_line, atol=0.05))
+
+print(f"--- SIMULATION RESULTS ---")
+print(f"Total Chaotic Points Analyzed: {len(raw_chaos)}")
+print(f"Directional Force 0_x1 (Approaching from Right): {approached_from_positive} points")
+print(f"Directional Force 0_x2 (Approaching from Left): {approached_from_negative} points")
+print(f"Points compressed within the 0.5 Speed Limit Horizon: {perfectly_centered} / 5000")
